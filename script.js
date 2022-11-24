@@ -6,13 +6,13 @@ const timer = document.getElementById('timer');                 // For timer
 paraInput.addEventListener('input' , () => {      // For inside border para add eventlistner
     const arraypara = paragraph.querySelectorAll('span') // Span for right text or wrong text
     const arrayvalue = paraInput.value.split('')
-    let right = true;
+    let correct = true;
     arraypara.forEach((characterSpan , index) => {
         const character = arrayvalue[index]
         if(character == null){                               // If condition when Para Input is equal to null
             characterSpan.classList.remove('right');   
             characterSpan.classList.remove('wrong');  
-            right = false;
+            correct = false;
         } 
         else if(character === characterSpan.innerText){              // If Para Input is to be equal to the character Span
             characterSpan.classList.add('right');      // ADD right class text it style be Green
@@ -21,10 +21,10 @@ paraInput.addEventListener('input' , () => {      // For inside border para add 
         else{
             characterSpan.classList.remove('right');
             characterSpan.classList.add('wrong');
-            right = false;
+            correct = false;
         }
     }) 
-    if(right) renderNewQuote()
+    if(correct) renderNewQuote()  // When all para is completed / correct they gets new quote
 })
 
 function getRandomPara(){  // Random Quote/Para Functions
@@ -36,15 +36,15 @@ function getRandomPara(){  // Random Quote/Para Functions
 async function renderNewQuote(){   // Function That Access RandomPara Function 
     const Para = await getRandomPara();
     paragraph.innerHTML = ''; // Texting text inside the html
-    Para.split('').forEach(character => {
+    Para.split('').forEach(character => {             // Para.split('') -> that form the quotes in the array 
         const characterSpan = document.createElement('span');
      //   characterSpan.classList.add('wrong')
         characterSpan.innerText = character
         paragraph.appendChild(characterSpan)
     })
-    paraInput.value = null;
+    paraInput.value = null;  // Evertime when we refresh new quote is obtain and input value is to be Null
     //console.log(Para)
-    Timer()   // Timer function call in renderNewQuote()
+    Timer()   // Every time I render a new quote the time is start
 }
 
 let start;
