@@ -1,11 +1,11 @@
 const Random_Paragraph =  'http://api.quotable.io/random'; // For Random Quotes API Link
-const paragraphElement = document.getElementById('paragraph');  // For Uper Para
-const paraInputElement = document.getElementById('paraInput'); // For inside border para
+const paragraph = document.getElementById('paragraph');  // For Uper Para
+const paraInput = document.getElementById('paraInput'); // For inside border para
 const timer = document.getElementById('timer');                 // For timer
 
-paraInputElement.addEventListener('input' , () => {      // For inside border para add eventlistner
-    const arraypara = paragraphElement.querySelectorAll('span') // Span for right text or wrong text
-    const arrayvalue = paraInputElement.value.split('')
+paraInput.addEventListener('input' , () => {      // For inside border para add eventlistner
+    const arraypara = paragraph.querySelectorAll('span') // Span for right text or wrong text
+    const arrayvalue = paraInput.value.split('')
     let right = true;
     arraypara.forEach((characterSpan , index) => {
         const character = arrayvalue[index]
@@ -35,14 +35,14 @@ function getRandomPara(){  // Random Quote/Para Functions
 
 async function renderNewQuote(){   // Function That Access RandomPara Function 
     const Para = await getRandomPara();
-    paragraphElement.innerHTML = ''; // Texting text inside the html
+    paragraph.innerHTML = ''; // Texting text inside the html
     Para.split('').forEach(character => {
         const characterSpan = document.createElement('span');
      //   characterSpan.classList.add('wrong')
         characterSpan.innerText = character
-        paragraphElement.appendChild(characterSpan)
+        paragraph.appendChild(characterSpan)
     })
-    paraInputElement.value = null;
+    paraInput.value = null;
     //console.log(Para)
     Timer()   // Timer function call in renderNewQuote()
 }
