@@ -61,3 +61,12 @@ body{
     color: red;
     text-decoration: underline;
 }
+
+
+/*Media Queries*/
+
+@media (max-width:400px) {
+    .container{
+        width: 80%;
+    }
+}
